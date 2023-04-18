@@ -1,38 +1,41 @@
-// Definição dos valores de faturamento por estado
-const faturamentoSP = 67836.43;
-const faturamentoRJ = 36678.66;
-const faturamentoMG = 29229.88;
-const faturamentoES = 27165.48;
-const faturamentoOutros = 19849.53;
+const faturamentoMensal = {
+    "SP": 67836.43,
+    "RJ": 36678.66,
+    "MG": 29229.88,
+    "ES": 27165.48,
+    "Outros": 19849.53
+  };
+  
+  const totalFaturamento = Object.values(faturamentoMensal).reduce((total, valor) => total + valor);
 
-// Cálculo do faturamento total
-const faturamentoTotal = faturamentoSP + faturamentoRJ + faturamentoMG + faturamentoES + faturamentoOutros;
+  const representacaoEstados = {};
+  for (let estado in faturamentoMensal) {
+    representacaoEstados[estado] = ((faturamentoMensal[estado] / totalFaturamento) * 100).toFixed(2) + "%";
+  }
+  
+  // Imprime os resultados
+  console.log("Faturamento mensal total: R$", totalFaturamento.toFixed(2));
+  console.log("Percentual de representação por estado:");
+  console.log(representacaoEstados);
 
-// Cálculo do percentual de representação de cada estado
-const percentualSP = (faturamentoSP / faturamentoTotal) * 100;
-const percentualRJ = (faturamentoRJ / faturamentoTotal) * 100;
-const percentualMG = (faturamentoMG / faturamentoTotal) * 100;
-const percentualES = (faturamentoES / faturamentoTotal) * 100;
-const percentualOutros = (faturamentoOutros / faturamentoTotal) * 100;
+  /** Segue outro modelo de conseguir gerar o mesmo resultado, de forma mais rapida, porém pouco intuitiva.
+   
+   
+    valorTotal = 67836.43 + 36678.66 + 29229.88 + 27165.48 + 19849.53
+    valorTotal = 180760.98
 
-// Impressão dos resultados
-console.log(`Percentual de representação de SP: ${percentualSP.toFixed(2)}%`);
-console.log(`Percentual de representação de RJ: ${percentualRJ.toFixed(2)}%`);
-console.log(`Percentual de representação de MG: ${percentualMG.toFixed(2)}%`);
-console.log(`Percentual de representação de ES: ${percentualES.toFixed(2)}%`);
-console.log(`Percentual de representação de Outros: ${percentualOutros.toFixed(2)}%`);
+        percentualSP = (67836.43 / 180760.98) * 100
+        percentualRJ = (36678.66 / 180760.98) * 100
+        percentualMG = (29229.88 / 180760.98) * 100
+        percentualES = (27165.48 / 180760.98) * 100
+        percentualOutros = (19849.53 / 180760.98) * 100
 
-// Seleciona o parágrafo com o id "resultados"
-const resultados = document.querySelector('#resultados');
+        console.log(`Percentual de representação de SP: ${percentualSP.toFixed(2)}%`)
+        console.log(`Percentual de representação de RJ: ${percentualRJ.toFixed(2)}%`)
+        console.log(`Percentual de representação de MG: ${percentualMG.toFixed(2)}%`)
+        console.log(`Percentual de representação de ES: ${percentualES.toFixed(2)}%`)
+        console.log(`Percentual de representação de Outros: ${percentualOutros.toFixed(2)}%`)
 
-// Cria uma string com os resultados formatados
-const resultadosFormatados = `
-    Percentual de representação de SP: ${percentualSP.toFixed(2)}%
-    Percentual de representação de RJ: ${percentualRJ.toFixed(2)}%
-    Percentual de representação de MG: ${percentualMG.toFixed(2)}%
-    Percentual de representação de ES: ${percentualES.toFixed(2)}%
-    Percentual de representação de Outros: ${percentualOutros.toFixed(2)}%
-`;
+    
 
-// Atualiza o conteúdo do parágrafo com os resultados formatados
-resultados.textContent = resultadosFormatados;
+   */
